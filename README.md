@@ -4,10 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To Install
 
-Steps:
-`yarn`
-`yarn start`
-`yarn test` or `yarn test App.test.tsx`
+#### Steps:
+
+install node_modules: `yarn`
+
+run the app: `yarn start`
+
+test: `yarn test` or `yarn test App.test.tsx`
 
 ## Available Scripts
 

@@ -7,6 +7,27 @@ import { observer } from "mobx-react-lite"
 export const User = observer(function User() {
   const auth = useLoginStore()
 
+  // Don't do this:
+  // return (
+  //   <div>
+  //     {!auth.user.token ? (
+  //       <p>Not Authenticated</p>
+  //     ) : (
+  //       <>
+  //         <p>User Id: {auth.user.id}</p>
+  //         <p>User Token: {auth.user.token}</p>
+  //       </>
+  //     )}
+  //   </div>
+  // )
+
+  // this could be a better pattern:
+  // return (
+  //   <>
+  //     {!auth.user.token ? <NotSuccessful /> : <Success />}
+  //   </>
+  // )
+
   if (!auth.user.token) {
     return (
       <div>
@@ -17,6 +38,7 @@ export const User = observer(function User() {
       </div>
     )
   }
+
   return (
     <div>
       <p>User Id: {auth.user.id}</p>
@@ -45,10 +67,12 @@ export function Login() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email</label>
-      <input id="email" name="email" onChange={handleChange} />
+      <label>
+        email
+        <input id="email" name="email" onChange={handleChange} />
+      </label>
       <br />
-      <label htmlFor="password">password</label>
+      <label htmlFor="password">Password</label>
       <input id="password" name="password" onChange={handleChange} />
       <button type="submit">submit</button>
     </form>
