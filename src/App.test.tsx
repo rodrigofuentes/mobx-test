@@ -35,5 +35,6 @@ test("register a user", async () => {
 
   expect(await screen.findByText(/42/i)).toBeInTheDocument()
   expect(await screen.findByText(/TheTestToken/i)).toBeInTheDocument()
-  screen.debug()
+  // uncomment to print dom to console
+  // screen.debug()
 })
