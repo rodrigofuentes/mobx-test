@@ -13,10 +13,10 @@ export class CoreStore {
 
   constructor() {
     makeObservable(this)
-    this.initializePage()
+    this.initializePages()
   }
 
-  private initializePage() {
+  private initializePages() {
     this.layoutStore = new LayoutStore(this)
     this.loginStore = new AuthStore(this)
   }

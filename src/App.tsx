@@ -56,38 +56,30 @@ export function Login() {
 }
 
 export function Content() {
-  // const auth = useLoginStore()
   return (
     <div className="App">
       <header className="App-header">
         <Greeting />
         <ChangeGreeting />
-        {/* Do not use `br` tags this is only for mock display purposes */}
-        {/* The real solution for it is to leverage css to get the visual results */}
+        {/* Do not use `br` tags, this is only for mock display purposes */}
+        {/* The real solution is to leverage css to get the visual results desired */}
         <br />
+        <p>
+          Only emails shown in <a href="https://reqres.in">https://reqres.in</a>{" "}
+          will work
+        </p>
         <User />
         <Login />
-        {/* <button onClick={() => console.log(auth.user)}>console log user</button> */}
       </header>
     </div>
   )
 }
 
-function App2() {
-  return (
-    <>
-      <CoreProvider>
-        <Content />
-      </CoreProvider>
-    </>
-  )
-}
 function App() {
   return (
     <>
       <CoreProvider>
-        <User />
-        <Login />
+        <Content />
       </CoreProvider>
     </>
   )
