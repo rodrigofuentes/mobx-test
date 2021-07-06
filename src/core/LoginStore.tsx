@@ -21,6 +21,7 @@ export class AuthStore {
     })
 
     const json = await response.json()
+    // change the observed user object
     this.user = json
     console.log(typeof json, json)
     return json

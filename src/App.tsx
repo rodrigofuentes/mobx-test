@@ -4,16 +4,6 @@ import { ChangeGreeting, Greeting } from "components"
 import { CoreProvider, useLoginStore } from "./core/CoreStore"
 import { observer } from "mobx-react-lite"
 
-function App() {
-  return (
-    <>
-      <CoreProvider>
-        <Content />
-      </CoreProvider>
-    </>
-  )
-}
-
 const User = observer(function User() {
   const auth = useLoginStore()
 
@@ -85,6 +75,16 @@ export function Content() {
         {/* <button onClick={() => console.log(auth.user)}>console log user</button> */}
       </header>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <CoreProvider>
+        <Content />
+      </CoreProvider>
+    </>
   )
 }
 
