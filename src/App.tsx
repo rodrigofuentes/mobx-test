@@ -4,7 +4,7 @@ import { ChangeGreeting, Greeting } from "components"
 import { CoreProvider, useLoginStore } from "./core/CoreStore"
 import { observer } from "mobx-react-lite"
 
-const User = observer(function User() {
+export const User = observer(function User() {
   const auth = useLoginStore()
 
   if (!auth.user.token) {
@@ -28,7 +28,7 @@ const User = observer(function User() {
   )
 })
 
-function Login() {
+export function Login() {
   const auth = useLoginStore()
   const [state, setState] = useState({ email: "", password: "" })
 
@@ -46,15 +46,10 @@ function Login() {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email</label>
-      <input id="email" name="email" type="email" onChange={handleChange} />
+      <input id="email" name="email" onChange={handleChange} />
       <br />
       <label htmlFor="password">password</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        onChange={handleChange}
-      />
+      <input id="password" name="password" onChange={handleChange} />
       <button type="submit">submit</button>
     </form>
   )
@@ -78,11 +73,21 @@ export function Content() {
   )
 }
 
-function App() {
+function App2() {
   return (
     <>
       <CoreProvider>
         <Content />
+      </CoreProvider>
+    </>
+  )
+}
+function App() {
+  return (
+    <>
+      <CoreProvider>
+        <User />
+        <Login />
       </CoreProvider>
     </>
   )

@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from "mobx"
+import { action, makeObservable, observable, runInAction } from "mobx"
 import { CoreStore } from "./CoreStore"
 
 export class AuthStore {
@@ -11,7 +11,8 @@ export class AuthStore {
 
   @action
   async login(data: { email: string; password: string }) {
-    console.log(data)
+    console.log("login arguments passed in:", data)
+
     // make fetch call
     const response = await fetch("https://reqres.in/api/register", {
       method: "POST",
@@ -20,10 +21,21 @@ export class AuthStore {
       body: JSON.stringify(data)
     })
 
-    const json = await response.json()
+    const user = await response.json()
     // change the observed user object
-    this.user = json
-    console.log(typeof json, json)
-    return json
+    runInAction(() => {
+      // since login is async...
+      // this setter needs to be inside runInAction
+      // or passed into a separate method
+      this.user = user
+    })
+
+    // the following won't work
+    // this.user = user
+
+    // calling a separate method to set the state would also work:
+    // this.setUser(user)
+
+    return user
   }
 }

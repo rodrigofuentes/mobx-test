@@ -24,10 +24,15 @@ export class CoreStore {
 
 const CoreContext = createContext<CoreStore>({} as CoreStore)
 
-export const CoreProvider: FC = ({ children }) => {
+export const CoreProvider: FC<{ value?: CoreStore }> = ({
+  children,
+  ...rest
+}) => {
   const coreStore = new CoreStore()
   return (
-    <CoreContext.Provider value={coreStore}>{children}</CoreContext.Provider>
+    <CoreContext.Provider value={coreStore} {...rest}>
+      {children}
+    </CoreContext.Provider>
   )
 }
 
