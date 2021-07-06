@@ -1,14 +1,10 @@
-import { CoreProvider, CoreStore } from "./core/CoreStore"
-import { render, screen, cleanup, waitFor } from "@testing-library/react"
+import { CoreStore } from "./core/CoreStore"
+import { render, screen } from "test-utils"
 import userEvent from "@testing-library/user-event"
 import { Content, Login, User } from "./App"
 
 test("renders with a new CoreStore", () => {
-  render(
-    <CoreProvider value={new CoreStore()}>
-      <Content />
-    </CoreProvider>
-  )
+  render(<Content />, { store: new CoreStore() })
   const h1 = screen.getByRole("heading", { name: /my greeting/i })
   expect(h1).toHaveTextContent("My Greeting")
   const button = screen.getByRole("button", { name: /change the greeting/i })
@@ -19,18 +15,7 @@ test("renders with a new CoreStore", () => {
 })
 
 test("register a user", async () => {
-  // render(
-  //   <CoreProvider>
-  //     <User />
-  //     <Login />
-  //   </CoreProvider>
-  // )
-
-  render(
-    <CoreProvider>
-      <Content />
-    </CoreProvider>
-  )
+  render(<Content />)
 
   expect(screen.getByText(/not authenticated/i)).toBeInTheDocument()
 
