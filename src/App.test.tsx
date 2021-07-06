@@ -19,18 +19,26 @@ test("renders with a new CoreStore", () => {
 })
 
 test("register a user", async () => {
+  // render(
+  //   <CoreProvider>
+  //     <User />
+  //     <Login />
+  //   </CoreProvider>
+  // )
+
   render(
     <CoreProvider>
-      <User />
-      <Login />
+      <Content />
     </CoreProvider>
   )
 
   expect(screen.getByText(/not authenticated/i)).toBeInTheDocument()
+
   const email = screen.getByLabelText(/email/i)
-  await userEvent.type(email, "test@test.com")
+  userEvent.type(email, "test@test.com")
+
   const password = screen.getByLabelText(/password/i)
-  await userEvent.type(password, "myTestPassword111")
+  userEvent.type(password, "myTestPassword111")
 
   const button = screen.getByRole("button", { name: /submit/i })
   userEvent.click(button)
@@ -38,33 +46,4 @@ test("register a user", async () => {
   expect(await screen.findByText(/42/i)).toBeInTheDocument()
   expect(await screen.findByText(/TheTestToken/i)).toBeInTheDocument()
   screen.debug()
-})
-
-xdescribe("LoginForm", () => {
-  it("should allow a user to log in", async () => {
-    render(
-      <CoreProvider>
-        <User />
-        <Login />
-      </CoreProvider>
-    )
-
-    await userEvent.type(
-      screen.getByLabelText(/email/i),
-      "mytestemail@test.com"
-    )
-    await userEvent.type(
-      screen.getByLabelText(/password/i),
-      "myTestPassword123"
-    )
-    userEvent.click(screen.getByRole("button", { name: /submit/i }))
-
-    // test-utils/handlers.ts
-    // these values come from MSW handler
-    expect(await screen.findByText(/42/i)).toBeInTheDocument()
-    expect(await screen.findByText(/TheTestToken/i)).toBeInTheDocument()
-
-    // uncomment to print dom to console
-    // screen.debug()
-  })
 })

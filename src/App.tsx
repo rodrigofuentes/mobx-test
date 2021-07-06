@@ -57,31 +57,31 @@ export function Login() {
 
 export function Content() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Greeting />
-        <ChangeGreeting />
-        {/* Do not use `br` tags, this is only for mock display purposes */}
-        {/* The real solution is to leverage css to get the visual results desired */}
-        <br />
-        <p>
-          Only emails shown in <a href="https://reqres.in">https://reqres.in</a>{" "}
-          will work
-        </p>
-        <User />
-        <Login />
-      </header>
-    </div>
+    <>
+      <Greeting />
+      <ChangeGreeting />
+      {/* Do not use `br` tags, this is only for mock display purposes */}
+      {/* The real solution is to leverage css to get the visual results desired */}
+      <br />
+      <p>
+        Only emails shown in <a href="https://reqres.in">https://reqres.in</a>{" "}
+        will work
+      </p>
+      <User />
+      <Login />
+    </>
   )
 }
 
 function App() {
   return (
-    <>
-      <CoreProvider>
-        <Content />
-      </CoreProvider>
-    </>
+    <CoreProvider>
+      <div className="App">
+        <header className="App-header">
+          <Content />
+        </header>
+      </div>
+    </CoreProvider>
   )
 }
 
