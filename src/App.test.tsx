@@ -15,7 +15,12 @@ test("renders with a new CoreStore", () => {
 })
 
 test("register a user", async () => {
-  render(<Content />)
+  render(
+    <div>
+      <Login />
+      <User />
+    </div>
+  )
 
   expect(screen.getByText(/not authenticated/i)).toBeInTheDocument()
 

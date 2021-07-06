@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To Install
+
+Steps:
+`yarn`
+`yarn start`
+`yarn test` or `yarn test App.test.tsx`
+
 ## Available Scripts
 
 In the project directory, you can run:
