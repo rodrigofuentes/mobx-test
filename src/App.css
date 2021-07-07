@@ -24,6 +24,14 @@
   color: white;
 }
 
+.App-header a {
+  color: hotpink;
+}
+
+.App-header a:visited {
+  color: pink;
+}
+
 .App-link {
   color: #61dafb;
 }
